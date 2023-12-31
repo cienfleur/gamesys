@@ -95,4 +95,8 @@ public class Game {
     public void setGamePorts(ScratchList<GamePort> gamePorts) {
         this.gamePorts = gamePorts;
     }
+
+    public void addGamePort(GamePort gamePort) {
+        gamePorts.addElement(gamePort);
+    }
 }
