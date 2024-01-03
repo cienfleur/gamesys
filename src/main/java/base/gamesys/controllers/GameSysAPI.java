@@ -158,6 +158,230 @@ public class GameSysAPI {
             gameMachineListView.setItems(gameMachineView);
         }
 
+        public void searchGameMachineByType(ActionEvent searchGameMachineEvent) {
+            ScratchList<GameMachine> searchResults = new ScratchList<>();
+            for (GameMachine gameMachine : gameMachines) {
+                if ((SearchType.getText() != null && gameMachine.getType().toLowerCase().contains(SearchType.getText().toLowerCase()))) {
+                    searchResults.addElement(gameMachine);
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : searchResults) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+        public void searchGameMachineByYear(ActionEvent searchGameMachineEvent) {
+            ScratchList<GameMachine> searchResults = new ScratchList<>();
+            for (GameMachine gameMachine : gameMachines) {
+                if ((initialLaunchYear.getText() != null && gameMachine.getLaunchYear() == parseInt(initialLaunchYear.getText()))) {
+                    searchResults.addElement(gameMachine);
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : searchResults) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+        public void searchGameMachineByManufacturer(ActionEvent searchGameMachineEvent) {
+            ScratchList<GameMachine> searchResults = new ScratchList<>();
+            for (GameMachine gameMachine : gameMachines) {
+                if ((searchManufacturer.getText() != null && gameMachine.getManufacturer().toLowerCase().contains(searchManufacturer.getText().toLowerCase()))) {
+                    searchResults.addElement(gameMachine);
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : searchResults) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+    public void searchGameMachineByMedia(ActionEvent searchGameMachineEvent) {
+        ScratchList<GameMachine> searchResults = new ScratchList<>();
+        for (GameMachine gameMachine : gameMachines) {
+            if ((media.getText() != null && gameMachine.getMedia().toLowerCase().contains(media.getText().toLowerCase()))) {
+                searchResults.addElement(gameMachine);
+            }
+        }
+        gameMachineView.clear();
+        for (GameMachine gameMachine : searchResults) {
+            gameMachineView.add(gameMachine);
+        }
+        gameMachineListView.setItems(gameMachineView);
+    }
+
+    public void searchGameMachineByDescription(ActionEvent searchGameMachineEvent) {
+        ScratchList<GameMachine> searchResults = new ScratchList<>();
+        for (GameMachine gameMachine : gameMachines) {
+            if ((description.getText() != null && gameMachine.getDesc().toLowerCase().contains(description.getText().toLowerCase()))) {
+                searchResults.addElement(gameMachine);
+            }
+        }
+        gameMachineView.clear();
+        for (GameMachine gameMachine : searchResults) {
+            gameMachineView.add(gameMachine);
+        }
+        gameMachineListView.setItems(gameMachineView);
+    }
+
+    public void searchGameMachineByDeveloper(ActionEvent searchGameMachineEvent) {
+            ScratchList<GameMachine> searchResults = new ScratchList<>();
+            for (GameMachine gameMachine : gameMachines) {
+                if ((developer.getText() != null && gameMachine.getDeveloper().toLowerCase().contains(developer.getText().toLowerCase()))) {
+                    searchResults.addElement(gameMachine);
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : searchResults) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+    }
+
+    public void searchGameByName(ActionEvent searchGameEvent) {
+        ScratchList<Game> searchResults = new ScratchList<>();
+        for (Game game : games) {
+            if ((searchGameName.getText() != null && game.getName().toLowerCase().contains(searchGameName.getText().toLowerCase()))) {
+                searchResults.addElement(game);
+            }
+        }
+        gameView.clear();
+        for (Game game : searchResults) {
+            gameView.add(game);
+        }
+        gameListView.setItems(gameView);
+    }
+
+    public void searchGameByMachine(ActionEvent searchGameEvent) {
+        ScratchList<Game> searchResults = new ScratchList<>();
+        for (Game game : games) {
+            if ((searchGameMachine.getText() != null && game.getGameMachine().toLowerCase().contains(searchGameMachine.getText().toLowerCase()))) {
+                searchResults.addElement(game);
+            }
+        }
+        gameView.clear();
+        for (Game game : searchResults) {
+            gameView.add(game);
+        }
+        gameListView.setItems(gameView);
+    }
+
+    public void searchGameByDeveloper(ActionEvent searchGameEvent) {
+        ScratchList<Game> searchResults = new ScratchList<>();
+        for (Game game : games) {
+            if ((searchGameDeveloper.getText() != null && game.getDeveloper().toLowerCase().contains(searchGameDeveloper.getText().toLowerCase()))) {
+                searchResults.addElement(game);
+            }
+        }
+        gameView.clear();
+        for (Game game : searchResults) {
+            gameView.add(game);
+        }
+        gameListView.setItems(gameView);
+    }
+
+    public void searchGameByPublisher(ActionEvent searchGameEvent) {
+        ScratchList<Game> searchResults = new ScratchList<>();
+        for (Game game : games) {
+            if ((searchGamePublisher.getText() != null && game.getPublisher().toLowerCase().contains(searchGamePublisher.getText().toLowerCase()))) {
+                searchResults.addElement(game);
+            }
+        }
+        gameView.clear();
+        for (Game game : searchResults) {
+            gameView.add(game);
+        }
+        gameListView.setItems(gameView);
+    }
+
+    public void searchGameByYear(ActionEvent searchGameEvent) {
+        ScratchList<Game> searchResults = new ScratchList<>();
+        for (Game game : games) {
+            if ((gameReleaseYear.getText() != null && game.getYearOfRelease() == parseInt(gameReleaseYear.getText()))) {
+                searchResults.addElement(game);
+            }
+        }
+        gameView.clear();
+        for (Game game : searchResults) {
+            gameView.add(game);
+        }
+        gameListView.setItems(gameView);
+    }
+
+    public void searchGameByDescription(ActionEvent searchGameEvent) {
+        ScratchList<Game> searchResults = new ScratchList<>();
+        for (Game game : games) {
+            if ((gameDescription.getText() != null && game.getDescription().toLowerCase().contains(gameDescription.getText().toLowerCase()))) {
+                searchResults.addElement(game);
+            }
+        }
+        gameView.clear();
+        for (Game game : searchResults) {
+            gameView.add(game);
+        }
+        gameListView.setItems(gameView);
+    }
+
+    public void searchPortByGame(ActionEvent searchGameEvent) {
+        ScratchList<GamePort> searchResults = new ScratchList<>();
+        for (GamePort gamePort : gamePorts) {
+            if ((searchPortGame.getText() != null && gamePort.getOriginalGame().getName().toLowerCase().contains(searchPortGame.getText().toLowerCase()))) {
+                searchResults.addElement(gamePort);
+            }
+        }
+        gamePortView.clear();
+        for (GamePort gamePort : searchResults) {
+            gamePortView.add(gamePort);
+        }
+        gamePortListView.setItems(gamePortView);
+    }
+
+    public void searchPortByMachine(ActionEvent searchGameEvent) {
+        ScratchList<GamePort> searchResults = new ScratchList<>();
+        for (GamePort gamePort : gamePorts) {
+            if ((searchPortMachine.getText() != null && gamePort.getNewGamesMachine().toLowerCase().contains(searchPortMachine.getText().toLowerCase()))) {
+                searchResults.addElement(gamePort);
+            }
+        }
+        gamePortView.clear();
+        for (GamePort gamePort : searchResults) {
+            gamePortView.add(gamePort);
+        }
+        gamePortListView.setItems(gamePortView);
+    }
+
+    public void searchPortByDeveloper(ActionEvent searchGameEvent) {
+        ScratchList<GamePort> searchResults = new ScratchList<>();
+        for (GamePort gamePort : gamePorts) {
+            if ((searchPortName.getText() != null && gamePort.getPortDeveloper().toLowerCase().contains(searchPortName.getText().toLowerCase()))) {
+                searchResults.addElement(gamePort);
+            }
+        }
+        gamePortView.clear();
+        for (GamePort gamePort : searchResults) {
+            gamePortView.add(gamePort);
+        }
+        gamePortListView.setItems(gamePortView);
+    }
+
+    public void searchPortByYear(ActionEvent searchGameEvent) {
+        ScratchList<GamePort> searchResults = new ScratchList<>();
+        for (GamePort gamePort : gamePorts) {
+            if ((portReleaseYear.getText() != null && gamePort.getReleaseYear() == parseInt(portReleaseYear.getText()))) {
+                searchResults.addElement(gamePort);
+            }
+        }
+        gamePortView.clear();
+        for (GamePort gamePort : searchResults) {
+            gamePortView.add(gamePort);
+        }
+        gamePortListView.setItems(gamePortView);
+    }
+
         // functions for sorting
 
         public void sortGameMachineByNameAsc(ActionEvent sortGameMachineEvent) {
@@ -175,6 +399,415 @@ public class GameSysAPI {
                 gameMachineView.add(gameMachine);
             }
             gameMachineListView.setItems(gameMachineView);
+        }
+
+        public void sortGameMachineByNameDesc(ActionEvent sortGameMachineEvent) {
+            ScratchList<GameMachine> sortedGameMachines = new ScratchList<>();
+            GameMachine highestGameMachine = gameMachines.getHead();
+            while (sortedGameMachines.getLength() != gameMachines.getLength()) {
+                for (GameMachine gameMachine : gameMachines) {
+                    if (gameMachine.getName().compareTo(highestGameMachine.getName()) > 0) {
+                        highestGameMachine = gameMachine;
+                    }
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : sortedGameMachines) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+        public void sortGameMachineByTypeAsc(ActionEvent sortGameMachineEvent) {
+            ScratchList<GameMachine> sortedGameMachines = new ScratchList<>();
+            GameMachine lowestGameMachine = gameMachines.getHead();
+            while (sortedGameMachines.getLength() != gameMachines.getLength()) {
+                for (GameMachine gameMachine : gameMachines) {
+                    if (gameMachine.getType().compareTo(lowestGameMachine.getType()) < 0) {
+                        lowestGameMachine = gameMachine;
+                    }
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : sortedGameMachines) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+        public void sortGameMachineByTypeDesc(ActionEvent sortGameMachineEvent) {
+            ScratchList<GameMachine> sortedGameMachines = new ScratchList<>();
+            GameMachine highestGameMachine = gameMachines.getHead();
+            while (sortedGameMachines.getLength() != gameMachines.getLength()) {
+                for (GameMachine gameMachine : gameMachines) {
+                    if (gameMachine.getType().compareTo(highestGameMachine.getType()) > 0) {
+                        highestGameMachine = gameMachine;
+                    }
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : sortedGameMachines) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+        public void sortGameMachineByYearAsc(ActionEvent sortGameMachineEvent) {
+            ScratchList<GameMachine> sortedGameMachines = new ScratchList<>();
+            GameMachine lowestGameMachine = gameMachines.getHead();
+            while (sortedGameMachines.getLength() != gameMachines.getLength()) {
+                for (GameMachine gameMachine : gameMachines) {
+                    if (gameMachine.getLaunchYear() < lowestGameMachine.getLaunchYear()) {
+                        lowestGameMachine = gameMachine;
+                    }
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : sortedGameMachines) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+        public void sortGameMachineByYearDesc(ActionEvent sortGameMachineEvent) {
+            ScratchList<GameMachine> sortedGameMachines = new ScratchList<>();
+            GameMachine highestGameMachine = gameMachines.getHead();
+            while (sortedGameMachines.getLength() != gameMachines.getLength()) {
+                for (GameMachine gameMachine : gameMachines) {
+                    if (gameMachine.getLaunchYear() > highestGameMachine.getLaunchYear()) {
+                        highestGameMachine = gameMachine;
+                    }
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : sortedGameMachines) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+
+        public void sortGameMachineByManufacturerAsc(ActionEvent sortGameMachineEvent) {
+            ScratchList<GameMachine> sortedGameMachines = new ScratchList<>();
+            GameMachine lowestGameMachine = gameMachines.getHead();
+            while (sortedGameMachines.getLength() != gameMachines.getLength()) {
+                for (GameMachine gameMachine : gameMachines) {
+                    if (gameMachine.getManufacturer().compareTo(lowestGameMachine.getManufacturer()) < 0) {
+                        lowestGameMachine = gameMachine;
+                    }
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : sortedGameMachines) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+        public void sortGameMachineByManufacturerDesc(ActionEvent sortGameMachineEvent) {
+            ScratchList<GameMachine> sortedGameMachines = new ScratchList<>();
+            GameMachine highestGameMachine = gameMachines.getHead();
+            while (sortedGameMachines.getLength() != gameMachines.getLength()) {
+                for (GameMachine gameMachine : gameMachines) {
+                    if (gameMachine.getManufacturer().compareTo(highestGameMachine.getManufacturer()) > 0) {
+                        highestGameMachine = gameMachine;
+                    }
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : sortedGameMachines) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+        public void sortGameMachineByPriceAsc(ActionEvent sortGameMachineEvent) {
+            ScratchList<GameMachine> sortedGameMachines = new ScratchList<>();
+            GameMachine lowestGameMachine = gameMachines.getHead();
+            while (sortedGameMachines.getLength() != gameMachines.getLength()) {
+                for (GameMachine gameMachine : gameMachines) {
+                    if (gameMachine.getMSRP() < lowestGameMachine.getMSRP()) {
+                        lowestGameMachine = gameMachine;
+                    }
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : sortedGameMachines) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+        public void sortGameMachineByPriceDesc(ActionEvent sortGameMachineEvent) {
+            ScratchList<GameMachine> sortedGameMachines = new ScratchList<>();
+            GameMachine highestGameMachine = gameMachines.getHead();
+            while (sortedGameMachines.getLength() != gameMachines.getLength()) {
+                for (GameMachine gameMachine : gameMachines) {
+                    if (gameMachine.getMSRP() > highestGameMachine.getMSRP()) {
+                        highestGameMachine = gameMachine;
+                    }
+                }
+            }
+            gameMachineView.clear();
+            for (GameMachine gameMachine : sortedGameMachines) {
+                gameMachineView.add(gameMachine);
+            }
+            gameMachineListView.setItems(gameMachineView);
+        }
+
+        public void sortGameByNameAsc(ActionEvent sortGameEvent) {
+            ScratchList<Game> sortedGames = new ScratchList<>();
+            Game lowestGame = games.getHead();
+            while (sortedGames.getLength() != games.getLength()) {
+                for (Game game : games) {
+                    if (game.getName().compareTo(lowestGame.getName()) < 0) {
+                        lowestGame = game;
+                    }
+                }
+            }
+            gameView.clear();
+            for (Game game : sortedGames) {
+                gameView.add(game);
+            }
+            gameListView.setItems(gameView);
+        }
+
+        public void sortGameByNameDesc(ActionEvent sortGameEvent) {
+            ScratchList<Game> sortedGames = new ScratchList<>();
+            Game highestGame = games.getHead();
+            while (sortedGames.getLength() != games.getLength()) {
+                for (Game game : games) {
+                    if (game.getName().compareTo(highestGame.getName()) > 0) {
+                        highestGame = game;
+                    }
+                }
+            }
+            gameView.clear();
+            for (Game game : sortedGames) {
+                gameView.add(game);
+            }
+            gameListView.setItems(gameView);
+        }
+
+        public void sortGameByPublisherAsc(ActionEvent sortGameEvent) {
+            ScratchList<Game> sortedGames = new ScratchList<>();
+            Game lowestGame = games.getHead();
+            while (sortedGames.getLength() != games.getLength()) {
+                for (Game game : games) {
+                    if (game.getPublisher().compareTo(lowestGame.getPublisher()) < 0) {
+                        lowestGame = game;
+                    }
+                }
+            }
+            gameView.clear();
+            for (Game game : sortedGames) {
+                gameView.add(game);
+            }
+            gameListView.setItems(gameView);
+        }
+
+        public void sortGameByPublisherDesc(ActionEvent sortGameEvent) {
+            ScratchList<Game> sortedGames = new ScratchList<>();
+            Game highestGame = games.getHead();
+            while (sortedGames.getLength() != games.getLength()) {
+                for (Game game : games) {
+                    if (game.getPublisher().compareTo(highestGame.getPublisher()) > 0) {
+                        highestGame = game;
+                    }
+                }
+            }
+            gameView.clear();
+            for (Game game : sortedGames) {
+                gameView.add(game);
+            }
+            gameListView.setItems(gameView);
+        }
+
+        public void sortGameByDeveloperAsc(ActionEvent sortGameEvent) {
+            ScratchList<Game> sortedGames = new ScratchList<>();
+            Game lowestGame = games.getHead();
+            while (sortedGames.getLength() != games.getLength()) {
+                for (Game game : games) {
+                    if (game.getDeveloper().compareTo(lowestGame.getDeveloper()) < 0) {
+                        lowestGame = game;
+                    }
+                }
+            }
+            gameView.clear();
+            for (Game game : sortedGames) {
+                gameView.add(game);
+            }
+            gameListView.setItems(gameView);
+        }
+
+        public void sortGameByDeveloperDesc(ActionEvent sortGameEvent) {
+            ScratchList<Game> sortedGames = new ScratchList<>();
+            Game highestGame = games.getHead();
+            while (sortedGames.getLength() != games.getLength()) {
+                for (Game game : games) {
+                    if (game.getDeveloper().compareTo(highestGame.getDeveloper()) > 0) {
+                        highestGame = game;
+                    }
+                }
+            }
+            gameView.clear();
+            for (Game game : sortedGames) {
+                gameView.add(game);
+            }
+            gameListView.setItems(gameView);
+        }
+
+        public void sortGameByMachineAsc(ActionEvent sortGameEvent) {
+            ScratchList<Game> sortedGames = new ScratchList<>();
+            Game lowestGame = games.getHead();
+            while (sortedGames.getLength() != games.getLength()) {
+                for (Game game : games) {
+                    if (game.getGameMachine().compareTo(lowestGame.getGameMachine()) < 0) {
+                        lowestGame = game;
+                    }
+                }
+            }
+            gameView.clear();
+            for (Game game : sortedGames) {
+                gameView.add(game);
+            }
+            gameListView.setItems(gameView);
+        }
+
+        public void sortGameByMachineDesc(ActionEvent sortGameEvent) {
+            ScratchList<Game> sortedGames = new ScratchList<>();
+            Game highestGame = games.getHead();
+            while (sortedGames.getLength() != games.getLength()) {
+                for (Game game : games) {
+                    if (game.getGameMachine().compareTo(highestGame.getGameMachine()) > 0) {
+                        highestGame = game;
+                    }
+                }
+            }
+            gameView.clear();
+            for (Game game : sortedGames) {
+                gameView.add(game);
+            }
+            gameListView.setItems(gameView);
+        }
+
+        public void sortGameByYearAsc(ActionEvent sortGameEvent) {
+            ScratchList<Game> sortedGames = new ScratchList<>();
+            Game lowestGame = games.getHead();
+            while (sortedGames.getLength() != games.getLength()) {
+                for (Game game : games) {
+                    if (game.getYearOfRelease() < lowestGame.getYearOfRelease()) {
+                        lowestGame = game;
+                    }
+                }
+            }
+            gameView.clear();
+            for (Game game : sortedGames) {
+                gameView.add(game);
+            }
+            gameListView.setItems(gameView);
+        }
+
+        public void sortGameByYearDesc(ActionEvent sortGameEvent) {
+            ScratchList<Game> sortedGames = new ScratchList<>();
+            Game highestGame = games.getHead();
+            while (sortedGames.getLength() != games.getLength()) {
+                for (Game game : games) {
+                    if (game.getYearOfRelease() > highestGame.getYearOfRelease()) {
+                        highestGame = game;
+                    }
+                }
+            }
+            gameView.clear();
+            for (Game game : sortedGames) {
+                gameView.add(game);
+            }
+            gameListView.setItems(gameView);
+        }
+
+        public void sortPortByOriginalGameAsc(ActionEvent sortGameEvent) {
+            ScratchList<GamePort> sortedGamePorts = new ScratchList<>();
+            GamePort lowestGamePort = gamePorts.getHead();
+            while (sortedGamePorts.getLength() != gamePorts.getLength()) {
+                for (GamePort gamePort : gamePorts) {
+                    if (gamePort.getOriginalGame().getName().compareTo(lowestGamePort.getOriginalGame().getName()) < 0) {
+                        lowestGamePort = gamePort;
+                    }
+                }
+            }
+            gamePortView.clear();
+            for (GamePort gamePort : sortedGamePorts) {
+                gamePortView.add(gamePort);
+            }
+            gamePortListView.setItems(gamePortView);
+        }
+
+        public void sortPortByOriginalGameDesc(ActionEvent sortGameEvent) {
+            ScratchList<GamePort> sortedGamePorts = new ScratchList<>();
+            GamePort highestGamePort = gamePorts.getHead();
+            while (sortedGamePorts.getLength() != gamePorts.getLength()) {
+                for (GamePort gamePort : gamePorts) {
+                    if (gamePort.getOriginalGame().getName().compareTo(highestGamePort.getOriginalGame().getName()) > 0) {
+                        highestGamePort = gamePort;
+                    }
+                }
+            }
+            gamePortView.clear();
+            for (GamePort gamePort : sortedGamePorts) {
+                gamePortView.add(gamePort);
+            }
+            gamePortListView.setItems(gamePortView);
+        }
+
+        public void sortPortByNewMachineAsc(ActionEvent sortGameEvent) {
+            ScratchList<GamePort> sortedGamePorts = new ScratchList<>();
+            GamePort lowestGamePort = gamePorts.getHead();
+            while (sortedGamePorts.getLength() != gamePorts.getLength()) {
+                for (GamePort gamePort : gamePorts) {
+                    if (gamePort.getNewGamesMachine().compareTo(lowestGamePort.getNewGamesMachine()) < 0) {
+                        lowestGamePort = gamePort;
+                    }
+                }
+            }
+            gamePortView.clear();
+            for (GamePort gamePort : sortedGamePorts) {
+                gamePortView.add(gamePort);
+            }
+            gamePortListView.setItems(gamePortView);
+        }
+
+        public void sortPortByNewMachineDesc(ActionEvent sortGameEvent) {
+            ScratchList<GamePort> sortedGamePorts = new ScratchList<>();
+            GamePort highestGamePort = gamePorts.getHead();
+            while (sortedGamePorts.getLength() != gamePorts.getLength()) {
+                for (GamePort gamePort : gamePorts) {
+                    if (gamePort.getNewGamesMachine().compareTo(highestGamePort.getNewGamesMachine()) > 0) {
+                        highestGamePort = gamePort;
+                    }
+                }
+            }
+            gamePortView.clear();
+            for (GamePort gamePort : sortedGamePorts) {
+                gamePortView.add(gamePort);
+            }
+            gamePortListView.setItems(gamePortView);
+        }
+
+        public void sortPortByYearAsc(ActionEvent sortGameEvent) {
+            ScratchList<GamePort> sortedGamePorts = new ScratchList<>();
+            GamePort lowestGamePort = gamePorts.getHead();
+            while (sortedGamePorts.getLength() != gamePorts.getLength()) {
+                for (GamePort gamePort : gamePorts) {
+                    if (gamePort.getReleaseYear() < lowestGamePort.getReleaseYear()) {
+                        lowestGamePort = gamePort;
+                    }
+                }
+            }
+            gamePortView.clear();
+            for (GamePort gamePort : sortedGamePorts) {
+                gamePortView.add(gamePort);
+            }
+            gamePortListView.setItems(gamePortView);
         }
 
         // serialization functions
