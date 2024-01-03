@@ -2,21 +2,19 @@ package base.gamesys.models;
 
 //
 
-import base.gamesys.utils.ScratchList;
-
 public class Game {
 
     private String name;
     private String publisher;
     private String description;
     private String developer;
-    private GameMachine gameMachine;
+    private String gameMachine;
     private int yearOfRelease;
     private String coverArtURL;
 
     // Constructor
     public Game(String name, String publisher, String description, String originalDeveloper,
-                GameMachine originalGameMachine, int yearOfRelease, String coverArtURL) {
+                String originalGameMachine, int yearOfRelease, String coverArtURL) {
         this.name = name;
         this.publisher = publisher;
         this.description = description;
@@ -28,7 +26,7 @@ public class Game {
 
     //Getters and setters
 
-    public GameMachine getGameMachine() {
+    public String getGameMachine() {
         return gameMachine;
     }
 
@@ -69,7 +67,7 @@ public class Game {
     }
 
     public void setYearOfRelease(int yearOfRelease) {
-        this.yearOfRelease = Math.max(yearOfRelease, gameMachine.getLaunchYear());
+        this.yearOfRelease = yearOfRelease;
     }
 
     public String getCoverArtURL() {

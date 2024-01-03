@@ -1,18 +1,18 @@
 ## 30%
 
-Add games machine to system
+~~Add games machine to system~~
 
-Add game to system
+~~Add game to system~~
 
-Add game port to system
+~~Add game port to system~~
 
 Edit, delete information
 
 ## 40%
 
-Search/filter functions
+~~Search/filter functions~~
 
-Sorted listing for search functions
+~~Sorted listing for search functions~~
 
 Hashing functions for searching
 
@@ -22,7 +22,7 @@ Selecting item gives detailed information from search listing (hashing should be
 
 Interactive drilldown
 
-Persistence (xstream)
+~~Persistence (xstream)~~
 
 JUnit Tests
 

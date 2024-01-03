@@ -87,7 +87,8 @@ public class GameSysAPI {
 
         public void selectGameMachine(MouseEvent selectGameMachineEvent) {
             indexSelected = gameMachineListView.getSelectionModel().getSelectedIndex();
-            System.out.println(indexSelected);
+            selectedGameMachine = gameMachines.accessIndex(indexSelected - 1);
+            System.out.println(indexSelected - 1);
         }
 
         // functions for managing games
@@ -116,6 +117,29 @@ public class GameSysAPI {
         public void selectGame(MouseEvent selectGameEvent) {
             indexSelected = gameListView.getSelectionModel().getSelectedIndex();
             System.out.println(indexSelected);
+        }
+
+        // functions for managing game ports
+
+        public void addGamePort(ActionEvent addGamePortEvent) {
+            GamePort newGamePort = new GamePort(selectedGame, portMachine.getText(), portName.getText(), portName.getText(), Integer.parseInt(portReleaseYear.getText()), portImageUrl.getText());
+            gamePorts.addElement(newGamePort);
+            gamePortView.add(newGamePort);
+            gamePortListView.setItems(gamePortView);
+        }
+
+        public void removeGamePort(ActionEvent removeGamePortEvent) {
+            if (gamePorts.getLength() > 0) {
+                gamePorts.removeElement(indexSelected - 1);
+                gamePortView.remove(indexSelected - 1);
+                gamePortListView.setItems(gamePortView);
+            }
+        }
+
+        public void setSelectedGamePort(MouseEvent selectGamePortEvent) {
+            indexSelected = gamePortListView.getSelectionModel().getSelectedIndex();
+            selectedGamePort = gamePorts.accessIndex(indexSelected - 1);
+            System.out.println(indexSelected - 1);
         }
 
         // functions for searching
