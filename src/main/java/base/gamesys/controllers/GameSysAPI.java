@@ -69,12 +69,39 @@ public class GameSysAPI {
 
         public TextField searchPortMachine, searchPortName, searchPortGame;
 
+        // function for clearing text fields
+
+        public void clearFields() {
+            machineName.clear();
+            manufacturer.clear();
+            description.clear();
+            type.clear();
+            developer.clear();
+            media.clear();
+            initialLaunchYear.clear();
+            initialRRP.clear();
+            imageUrl.clear();
+            gameName.clear();
+            gameDescription.clear();
+            gameGenre.clear();
+            gameDeveloper.clear();
+            gamePublisher.clear();
+            gameReleaseYear.clear();
+            gameImageUrl.clear();
+            portMachine.clear();
+            portName.clear();
+            portDescription.clear();
+            portReleaseYear.clear();
+            portImageUrl.clear();
+        }
+
         // functions for managing game machines
 
         public void addGameMachine(ActionEvent addGameMachineEvent) {
             GameMachine newGameMachine = new GameMachine(machineName.getText(), manufacturer.getText(), description.getText(), type.getText(), media.getText(), developer.getText(), parseInt(initialLaunchYear.getText()), Float.parseFloat(initialRRP.getText()), imageUrl.getText());
             gameMachines.addElement(newGameMachine);
             gameMachineListView.getItems().add(newGameMachine);
+            clearFields();
         }
 
         public void removeGameMachine(ActionEvent removeGameMachineEvent) {
