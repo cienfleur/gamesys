@@ -14,8 +14,6 @@ public class Game {
     private int yearOfRelease;
     private String coverArtURL;
 
-    private ScratchList<GamePort> gamePorts;
-
     // Constructor
     public Game(String name, String publisher, String description, String originalDeveloper,
                 GameMachine originalGameMachine, int yearOfRelease, String coverArtURL) {
@@ -26,7 +24,6 @@ public class Game {
         this.gameMachine = originalGameMachine;
         setYearOfRelease(yearOfRelease);
         this.coverArtURL = coverArtURL;
-        this.gamePorts = new ScratchList<>();
     }
 
     //Getters and setters
@@ -72,12 +69,7 @@ public class Game {
     }
 
     public void setYearOfRelease(int yearOfRelease) {
-        if (yearOfRelease > gameMachine.getLaunchYear()) {
-            this.yearOfRelease = yearOfRelease;
-        }
-        else {
-            this.yearOfRelease = gameMachine.getLaunchYear();
-        }
+        this.yearOfRelease = Math.max(yearOfRelease, gameMachine.getLaunchYear());
     }
 
     public String getCoverArtURL() {
@@ -86,17 +78,5 @@ public class Game {
 
     public void setCoverArtURL(String coverArtURL) {
         this.coverArtURL = coverArtURL;
-    }
-
-    public ScratchList<GamePort> getGamePorts() {
-        return gamePorts;
-    }
-
-    public void setGamePorts(ScratchList<GamePort> gamePorts) {
-        this.gamePorts = gamePorts;
-    }
-
-    public void addGamePort(GamePort gamePort) {
-        gamePorts.addElement(gamePort);
     }
 }

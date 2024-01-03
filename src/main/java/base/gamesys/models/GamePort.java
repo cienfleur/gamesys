@@ -4,16 +4,18 @@ import base.gamesys.utils.ScratchList;
 
 public class GamePort {
     private Game originalGame;
-    private GameMachine newGamesMachine;
+    private String newGamesMachine;
+    private String gameName;
     private String portDeveloper;
     private int releaseYear;
     private String coverArtURL;
 
     // Constructor
-    public GamePort(Game originalGame, GameMachine newGamesMachine, String portDeveloper,
+    public GamePort(Game originalGame, String newGamesMachine, String gameName, String portDeveloper,
                     int releaseYear, String coverArtURL) {
         this.originalGame = originalGame;
-        this.newGamesMachine = originalGame.getGameMachine();
+        this.newGamesMachine = newGamesMachine;
+        this.gameName = originalGame.getName();
         this.portDeveloper = portDeveloper;
         setReleaseYear(releaseYear);
         this.coverArtURL = coverArtURL;
@@ -72,24 +74,6 @@ public class GamePort {
     public void deleteGamePort(ScratchList<GamePort> gamePortList) {
         // Remove the game port from the list
         gamePortList.removeElement(this.getReleaseYear());
-    }
-
-    //Search and filter
-    public static ScratchList<GamePort> searchGamePorts(ScratchList<GamePort> gamePorts, String partialName,
-                                                        String portDeveloper, String originalGameName,
-                                                        int releaseYear, String coverArtURL) {
-        ScratchList<GamePort> result = new ScratchList<>();
-
-        for (GamePort gamePort : gamePorts) {
-            if ((partialName == null || gamePort.getOriginalGame().getName().toLowerCase().contains(partialName.toLowerCase())) &&
-                    (portDeveloper == null || gamePort.getPortDeveloper().toLowerCase().contains(portDeveloper.toLowerCase())) &&
-                    (originalGameName == null || gamePort.getOriginalGame().getName().toLowerCase().contains(originalGameName.toLowerCase())) &&
-                    (releaseYear < 0 || gamePort.getReleaseYear() == releaseYear) &&
-                    (coverArtURL == null || gamePort.getCoverArtURL().toLowerCase().contains(coverArtURL.toLowerCase()))) {
-                result.addElement(gamePort);
-            }
-        }
-        return result;
     }
 }
 
