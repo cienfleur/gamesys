@@ -17,6 +17,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Collection;
+
 import static java.lang.Integer.parseInt;
 
 public class GameSysAPI {
@@ -28,7 +30,7 @@ public class GameSysAPI {
         // fields for managing game machines
         public ScratchList<GameMachine> gameMachines = new ScratchList<>();
         public ObservableList<GameMachine> gameMachineView = FXCollections.observableArrayList();
-        public ListView<GameMachine> gameMachineListView;
+        public ListView<GameMachine> gameMachineListView = new ListView<GameMachine>();
 
         public GameMachine selectedGameMachine;
 
@@ -38,7 +40,7 @@ public class GameSysAPI {
         public ScratchList<Game> games = new ScratchList<>();
         public ObservableList<Game> gameView = FXCollections.observableArrayList();
 
-        public ListView<Game> gameListView;
+        public ListView<Game> gameListView = new ListView<Game>();
 
         public Game selectedGame;
 
@@ -49,7 +51,7 @@ public class GameSysAPI {
         public ScratchList<GamePort> gamePorts = new ScratchList<>();
         public ObservableList<GamePort> gamePortView = FXCollections.observableArrayList();
 
-        public ListView<GamePort> gamePortListView;
+        public ListView<GamePort> gamePortListView = new ListView<GamePort>();
 
         public GamePort selectedGamePort;
 
@@ -72,8 +74,7 @@ public class GameSysAPI {
         public void addGameMachine(ActionEvent addGameMachineEvent) {
             GameMachine newGameMachine = new GameMachine(machineName.getText(), manufacturer.getText(), description.getText(), type.getText(), media.getText(), developer.getText(), parseInt(initialLaunchYear.getText()), Float.parseFloat(initialRRP.getText()), imageUrl.getText());
             gameMachines.addElement(newGameMachine);
-            gameMachineView.add(newGameMachine);
-            gameMachineListView.setItems(gameMachineView);
+            gameMachineListView.getItems().add(newGameMachine);
         }
 
         public void removeGameMachine(ActionEvent removeGameMachineEvent) {
