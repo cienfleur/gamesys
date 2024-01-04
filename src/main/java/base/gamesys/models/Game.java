@@ -8,13 +8,13 @@ public class Game {
     private String publisher;
     private String description;
     private String developer;
-    private String gameMachine;
+    private GameMachine gameMachine;
     private int yearOfRelease;
     private String coverArtURL;
 
     // Constructor
     public Game(String name, String publisher, String description, String originalDeveloper,
-                String originalGameMachine, int yearOfRelease, String coverArtURL) {
+                GameMachine originalGameMachine, int yearOfRelease, String coverArtURL) {
         this.name = name;
         this.publisher = publisher;
         this.description = description;
@@ -26,7 +26,7 @@ public class Game {
 
     //Getters and setters
 
-    public String getGameMachine() {
+    public GameMachine getGameMachine() {
         return gameMachine;
     }
 
@@ -67,7 +67,7 @@ public class Game {
     }
 
     public void setYearOfRelease(int yearOfRelease) {
-        this.yearOfRelease = yearOfRelease;
+        this.yearOfRelease = Math.max(yearOfRelease, gameMachine.getLaunchYear());
     }
 
     public String getCoverArtURL() {

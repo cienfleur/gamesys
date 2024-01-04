@@ -9,10 +9,11 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
@@ -32,19 +33,33 @@ public class GameSysAPI {
         public ObservableList<GameMachine> gameMachineView = FXCollections.observableArrayList();
         public ListView<GameMachine> gameMachineListView = new ListView<GameMachine>();
 
+        public ChoiceBox<GameMachine> gameMachineChoiceBox = new ChoiceBox<GameMachine>();
+
         public GameMachine selectedGameMachine;
 
         public TextField machineName, manufacturer, description, type, developer, media, initialLaunchYear, initialRRP, imageUrl;
-        // fields for managing games
+
+    // text fields for editing game machines
+
+    public TextField editMachineName, editManufacturer, editDescription, editType, editDeveloper, editMedia, editInitialLaunchYear, editInitialRRP, editImageUrl;
+
+    // fields for managing games
 
         public ScratchList<Game> games = new ScratchList<>();
         public ObservableList<Game> gameView = FXCollections.observableArrayList();
 
         public ListView<Game> gameListView = new ListView<Game>();
 
+        public ChoiceBox<Game> gameChoiceBox = new ChoiceBox<Game>();
+
         public Game selectedGame;
 
-        public TextField gameName, gameDescription, gameGenre, gameDeveloper, gamePublisher, gameReleaseYear, gameImageUrl;
+        public TextField gameName, gameDescription, gameDeveloper, gamePublisher, gameReleaseYear, gameImageUrl;
+
+        // text fields for editing games
+
+        public TextField editGameName, editGameDescription, editGameDeveloper, editGamePublisher, editGameReleaseYear, editGameImageUrl;
+
 
         // fields for managing game ports
 
@@ -53,9 +68,15 @@ public class GameSysAPI {
 
         public ListView<GamePort> gamePortListView = new ListView<GamePort>();
 
+        public ChoiceBox<GamePort> gamePortChoiceBox = new ChoiceBox<GamePort>();
+
         public GamePort selectedGamePort;
 
-        public TextField portMachine, portName, portDescription, portReleaseYear, portImageUrl;
+        public TextField portDeveloper, portReleaseYear, portImageUrl;
+
+        // text fields for editing game ports
+
+        public TextField editPortDeveloper, editPortReleaseYear, editPortImageUrl;
 
         // fields for searching for game machines
 
@@ -83,14 +104,11 @@ public class GameSysAPI {
             imageUrl.clear();
             gameName.clear();
             gameDescription.clear();
-            gameGenre.clear();
             gameDeveloper.clear();
             gamePublisher.clear();
             gameReleaseYear.clear();
             gameImageUrl.clear();
-            portMachine.clear();
-            portName.clear();
-            portDescription.clear();
+            portDeveloper.clear();
             portReleaseYear.clear();
             portImageUrl.clear();
         }
@@ -101,6 +119,7 @@ public class GameSysAPI {
             GameMachine newGameMachine = new GameMachine(machineName.getText(), manufacturer.getText(), description.getText(), type.getText(), media.getText(), developer.getText(), parseInt(initialLaunchYear.getText()), Float.parseFloat(initialRRP.getText()), imageUrl.getText());
             gameMachines.addElement(newGameMachine);
             gameMachineListView.getItems().add(newGameMachine);
+            gameMachineChoiceBox.getItems().add(newGameMachine);
             clearFields();
         }
 
@@ -119,10 +138,24 @@ public class GameSysAPI {
             System.out.println(indexSelected - 1);
         }
 
+        public void editGameMachine(ActionEvent editGameMachineEvent) {
+            selectedGameMachine.setName(editMachineName.getText());
+            selectedGameMachine.setManufacturer(editManufacturer.getText());
+            selectedGameMachine.setDesc(editDescription.getText());
+            selectedGameMachine.setType(editType.getText());
+            selectedGameMachine.setMedia(editMedia.getText());
+            selectedGameMachine.setDeveloper(editDeveloper.getText());
+            selectedGameMachine.setLaunchYear(parseInt(editInitialLaunchYear.getText()));
+            selectedGameMachine.setMSRP(Float.parseFloat(editInitialRRP.getText()));
+            selectedGameMachine.setUrlImage(editImageUrl.getText());
+            gameMachineView.set(indexSelected - 1, selectedGameMachine);
+            gameMachineListView.setItems(gameMachineView);
+        }
+
         // functions for managing games
 
         public void addGame(ActionEvent addGameEvent) {
-            Game newGame = new Game(gameName.getText(), gameDescription.getText(), gameGenre.getText(), gameDeveloper.getText(), gamePublisher.getText(), parseInt(gameReleaseYear.getText()), gameImageUrl.getText());
+            Game newGame = new Game(gameName.getText(), gameDescription.getText(), gameDeveloper.getText(),  gamePublisher.getText(), gameMachineChoiceBox.getSelectionModel().getSelectedItem(), parseInt(gameReleaseYear.getText()), gameImageUrl.getText());
             games.addElement(newGame);
             gameView.add(newGame);
             gameListView.setItems(gameView);
@@ -147,10 +180,21 @@ public class GameSysAPI {
             System.out.println(indexSelected);
         }
 
+        public void editGame(ActionEvent editGameEvent) {
+            selectedGame.setName(editGameName.getText());
+            selectedGame.setDescription(editGameDescription.getText());
+            selectedGame.setDeveloper(editGameDeveloper.getText());
+            selectedGame.setPublisher(editGamePublisher.getText());
+            selectedGame.setYearOfRelease(parseInt(editGameReleaseYear.getText()));
+            selectedGame.setCoverArtURL(editGameImageUrl.getText());
+            gameView.set(indexSelected - 1, selectedGame);
+            gameListView.setItems(gameView);
+        }
+
         // functions for managing game ports
 
         public void addGamePort(ActionEvent addGamePortEvent) {
-            GamePort newGamePort = new GamePort(selectedGame, portMachine.getText(), portName.getText(), portName.getText(), Integer.parseInt(portReleaseYear.getText()), portImageUrl.getText());
+            GamePort newGamePort = new GamePort(gameChoiceBox.getSelectionModel().getSelectedItem(), gameMachineChoiceBox.getSelectionModel().getSelectedItem(), portDeveloper.getText(), Integer.parseInt(portReleaseYear.getText()), portImageUrl.getText());
             gamePorts.addElement(newGamePort);
             gamePortView.add(newGamePort);
             gamePortListView.setItems(gamePortView);
@@ -168,6 +212,14 @@ public class GameSysAPI {
             indexSelected = gamePortListView.getSelectionModel().getSelectedIndex();
             selectedGamePort = gamePorts.accessIndex(indexSelected - 1);
             System.out.println(indexSelected - 1);
+        }
+
+        public void editGamePort(ActionEvent editGamePortEvent) {
+            selectedGamePort.setPortDeveloper(editPortDeveloper.getText());
+            selectedGamePort.setReleaseYear(Integer.parseInt(editPortReleaseYear.getText()));
+            selectedGamePort.setCoverArtURL(editPortImageUrl.getText());
+            gamePortView.set(indexSelected - 1, selectedGamePort);
+            gamePortListView.setItems(gamePortView);
         }
 
         // functions for searching
@@ -287,7 +339,7 @@ public class GameSysAPI {
     public void searchGameByMachine(ActionEvent searchGameEvent) {
         ScratchList<Game> searchResults = new ScratchList<>();
         for (Game game : games) {
-            if ((searchGameMachine.getText() != null && game.getGameMachine().toLowerCase().contains(searchGameMachine.getText().toLowerCase()))) {
+            if ((searchGameMachine.getText() != null && game.getGameMachine().getName().toLowerCase().contains(searchGameMachine.getText().toLowerCase()))) {
                 searchResults.addElement(game);
             }
         }
@@ -371,7 +423,7 @@ public class GameSysAPI {
     public void searchPortByMachine(ActionEvent searchGameEvent) {
         ScratchList<GamePort> searchResults = new ScratchList<>();
         for (GamePort gamePort : gamePorts) {
-            if ((searchPortMachine.getText() != null && gamePort.getNewGamesMachine().toLowerCase().contains(searchPortMachine.getText().toLowerCase()))) {
+            if ((searchPortMachine.getText() != null && gamePort.getNewGamesMachine().getName().toLowerCase().contains(searchPortMachine.getText().toLowerCase()))) {
                 searchResults.addElement(gamePort);
             }
         }
@@ -690,7 +742,7 @@ public class GameSysAPI {
             Game lowestGame = games.getHead();
             while (sortedGames.getLength() != games.getLength()) {
                 for (Game game : games) {
-                    if (game.getGameMachine().compareTo(lowestGame.getGameMachine()) < 0) {
+                    if (game.getGameMachine().getName().compareTo(lowestGame.getGameMachine().getName()) < 0) {
                         lowestGame = game;
                     }
                 }
@@ -707,7 +759,7 @@ public class GameSysAPI {
             Game highestGame = games.getHead();
             while (sortedGames.getLength() != games.getLength()) {
                 for (Game game : games) {
-                    if (game.getGameMachine().compareTo(highestGame.getGameMachine()) > 0) {
+                    if (game.getGameMachine().getName().compareTo(highestGame.getGameMachine().getName()) > 0) {
                         highestGame = game;
                     }
                 }
@@ -792,7 +844,7 @@ public class GameSysAPI {
             GamePort lowestGamePort = gamePorts.getHead();
             while (sortedGamePorts.getLength() != gamePorts.getLength()) {
                 for (GamePort gamePort : gamePorts) {
-                    if (gamePort.getNewGamesMachine().compareTo(lowestGamePort.getNewGamesMachine()) < 0) {
+                    if (gamePort.getNewGamesMachine().getName().compareTo(lowestGamePort.getNewGamesMachine().getName()) < 0) {
                         lowestGamePort = gamePort;
                     }
                 }
@@ -809,7 +861,7 @@ public class GameSysAPI {
             GamePort highestGamePort = gamePorts.getHead();
             while (sortedGamePorts.getLength() != gamePorts.getLength()) {
                 for (GamePort gamePort : gamePorts) {
-                    if (gamePort.getNewGamesMachine().compareTo(highestGamePort.getNewGamesMachine()) > 0) {
+                    if (gamePort.getNewGamesMachine().getName().compareTo(highestGamePort.getNewGamesMachine().getName()) > 0) {
                         highestGamePort = gamePort;
                     }
                 }
@@ -837,6 +889,8 @@ public class GameSysAPI {
             }
             gamePortListView.setItems(gamePortView);
         }
+
+
 
         // serialization functions
 

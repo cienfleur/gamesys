@@ -4,14 +4,14 @@ import base.gamesys.utils.ScratchList;
 
 public class GamePort {
     private Game originalGame;
-    private String newGamesMachine;
+    private GameMachine newGamesMachine;
     private String gameName;
     private String portDeveloper;
     private int releaseYear;
     private String coverArtURL;
 
     // Constructor
-    public GamePort(Game originalGame, String newGamesMachine, String gameName, String portDeveloper,
+    public GamePort(Game originalGame, GameMachine newGamesMachine, String portDeveloper,
                     int releaseYear, String coverArtURL) {
         this.originalGame = originalGame;
         this.newGamesMachine = newGamesMachine;
@@ -30,11 +30,11 @@ public class GamePort {
         this.originalGame = originalGame;
     }
 
-    public String getNewGamesMachine() {
+    public GameMachine getNewGamesMachine() {
         return newGamesMachine;
     }
 
-    public void setNewGamesMachine(String newGamesMachine) {
+    public void setNewGamesMachine(GameMachine newGamesMachine) {
         this.newGamesMachine = newGamesMachine;
     }
 
@@ -62,18 +62,5 @@ public class GamePort {
         this.coverArtURL = coverArtURL;
     }
 
-    public void editGamePort(ScratchList<GamePort> gamePortList, GamePort updatedGamePort) {
-        // Remove the existing game port from the list
-        gamePortList.removeElement(this.getReleaseYear());
-
-        // Add the updated game port to the list
-        gamePortList.addElement(updatedGamePort);
-    }
-
-    // Delete game port
-    public void deleteGamePort(ScratchList<GamePort> gamePortList) {
-        // Remove the game port from the list
-        gamePortList.removeElement(this.getReleaseYear());
-    }
 }
 
