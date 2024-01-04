@@ -77,4 +77,7 @@ public class Game {
     public void setCoverArtURL(String coverArtURL) {
         this.coverArtURL = coverArtURL;
     }
+
+    public void setGameMachine(GameMachine gameMachine) {
+    }
 }
