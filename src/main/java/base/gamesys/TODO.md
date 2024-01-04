@@ -6,7 +6,7 @@
 
 ~~Add game port to system~~
 
-Edit, delete information
+~~Edit, delete information~~
 
 ## 40%
 
@@ -20,10 +20,11 @@ Hashing functions for searching
 
 Selecting item gives detailed information from search listing (hashing should be used here)
 
-Interactive drilldown
+~~Interactive drilldown~~
 
 ~~Persistence (xstream)~~
 
 JUnit Tests
 
 Commenting
+

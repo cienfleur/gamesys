@@ -117,8 +117,9 @@ public class GameSysAPI {
     public void addGameMachine(ActionEvent addGameMachineEvent) {
         GameMachine newGameMachine = new GameMachine(machineName.getText(), manufacturer.getText(), description.getText(), type.getText(), media.getText(), developer.getText(), parseInt(initialLaunchYear.getText()), Float.parseFloat(initialRRP.getText()), imageUrl.getText());
         gameMachines.addElement(newGameMachine);
-        gameMachineListView.getItems().add(newGameMachine);
-        gameMachineChoiceBox.getItems().add(newGameMachine);
+        gameMachineView.add(newGameMachine);
+        gameMachineListView.setItems(gameMachineView);
+        gameMachineChoiceBox.setItems(gameMachineView);
         clearFields();
     }
 
@@ -126,6 +127,7 @@ public class GameSysAPI {
         if (gameMachines.getLength() > 0) {
             gameMachines.removeElement(indexSelected - 1);
             gameMachineView.remove(indexSelected - 1);
+            gameMachineChoiceBox.getItems().remove(indexSelected - 1);
             gameMachineListView.setItems(gameMachineView);
         }
     }
@@ -157,6 +159,8 @@ public class GameSysAPI {
         games.addElement(newGame);
         gameView.add(newGame);
         gameListView.setItems(gameView);
+        gameChoiceBox.setItems(gameView);
+        clearFields();
     }
 
     public void removeGame(ActionEvent removeGameEvent) {
@@ -169,6 +173,7 @@ public class GameSysAPI {
             }
             games.removeElement(indexSelected - 1);
             gameView.remove(indexSelected - 1);
+            gameChoiceBox.getItems().remove(indexSelected - 1);
             gameListView.setItems(gameView);
         }
     }
